@@ -1,6 +1,50 @@
-.bg {
-  background-color: red;
+.root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.tabListContentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px 20px;
+  
+  .tabList {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    
+    li {
+      width: fit-content;
+      border-bottom-style: none;
+      padding: 8px 16px 6px 16px;
+      border-radius: 10px 10px 0px 0px;
+      background-color: gray;
+      color: white;
+      margin-right: 1px;
+    }
+
+    li:last-child {
+      margin-right: 0px;
+    }
+
+    .activeTab {
+      color: white;
+      background: black;
+    }
+  }
+  
+  .tabContent {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+
+  }
 }
