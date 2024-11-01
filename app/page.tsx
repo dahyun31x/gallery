@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./page.module.scss";
-import Content from "./components/Content";
 
 export default function Page() {
   const tabData = [
