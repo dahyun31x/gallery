@@ -1,15 +1,20 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
 import styles from "./page.module.scss";
 
 export default function Page() {
-  const [devLogContent, setDevLogContent] = useState<string>("");
+  const [mdxContent, setMdxContent] = useState<MDXRemoteSerializeResult | null>(null);
 
   useEffect(() => {
     fetch('/api')
       .then(response => response.json())
-      .then(data => setDevLogContent(data.content))
+      .then(async data => {
+        const mdxSource = await serialize(data.content);
+        setMdxContent(mdxSource);
+      })
       .catch(error => console.error('Error fetching dev log:', error));
   }, []);
 
@@ -20,7 +25,7 @@ export default function Page() {
       <>
         <h1>블로그 홈</h1><br/>
         <p>어서오세요</p>
-        <div dangerouslySetInnerHTML={{ __html: devLogContent }} />
+        {mdxContent && <MDXRemote {...mdxContent} />}
       </>
     ) },
   ];
