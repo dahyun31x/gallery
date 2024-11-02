@@ -22,11 +22,13 @@ export default function Page() {
     { btn: "일상 🏃‍♀️", content: "example 2" },
     { btn: "독후감 📚", content: "example 1" },
     { btn: "홈 🏡", content: (
-      <>
-        <h1>블로그 홈</h1><br/>
-        <p>어서오세요</p>
+      <div className={styles.homeContent}>
+        <div className={styles.title}>
+          <h1>홈</h1><br/>
+          <p>어서오세요</p>
+        </div>
         {mdxContent && <MDXRemote {...mdxContent} />}
-      </>
+      </div>
     ) },
   ];
 

@@ -37,8 +37,19 @@
   }
 }
 
-.content {
+.homeContent {
   width: auto;
   height: 100%;
   margin: 2rem 4px 2rem 12rem;
+  ul {
+    line-height: 1.8;
+    margin: 0;
+    padding-inline-start: 1.5em;  
+  }
+}
+
+.title {
+  float: left;
+  position: absolute;
+  left: 9rem;
 }
