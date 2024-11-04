@@ -19,17 +19,9 @@ export default function Page() {
   }, []);
 
   const tabData = [
-    { btn: "일상 🏃‍♀️", content: "example 2" },
-    { btn: "독후감 📚", content: "example 1" },
-    { btn: "홈 🏡", content: (
-      <div className={styles.homeContent}>
-        <div className={styles.title}>
-          <h1>홈</h1><br/>
-          <p>어서오세요</p>
-        </div>
-        {mdxContent && <MDXRemote {...mdxContent} />}
-      </div>
-    ) },
+    { btn: "일상 🏃‍♀️", content: "example 2", name: "일상", desc: "일상 한 줄" },
+    { btn: "독후감 📚", content: "example 1", name: "독후감", desc: "책 읽기"},
+    { btn: "홈 🏡", content: mdxContent ? <MDXRemote {...mdxContent} /> : null, name:"홈", desc: "어서오세요." },
   ];
 
   const [activeTab, setActiveTab] = useState(2);
@@ -48,9 +40,14 @@ export default function Page() {
             </li>
           ))}
         </ul>
-
         <div className={styles.tabContent}>
-          {tabData[activeTab].content}
+          <section>
+            <h1>{tabData[activeTab].name}</h1><br/>
+            <p>{tabData[activeTab].desc}</p>
+          </section>
+          <div className={styles.homeContent}>
+            {tabData[activeTab].content}
+          </div>
         </div>
       </div>
     </div>

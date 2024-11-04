@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
 }
 
 .tabListContentWrapper {
@@ -37,19 +36,26 @@
   }
 }
 
-.homeContent {
-  width: auto;
-  height: 100%;
-  margin: 2rem 4px 2rem 12rem;
-  ul {
-    line-height: 1.8;
-    margin: 0;
-    padding-inline-start: 1.5em;  
+.tabContent {
+  display: flex;
+  padding-top: 1rem;
+  section {
+    flex-grow: 1; /* 4 비율 */
+    flex-basis: 0; /* 기본 크기를 0으로 설정 */  
   }
-}
+  
+  .homeContent {
+    flex-grow: 4.5; /* 4 비율 */
+    flex-basis: 0; /* 기본 크기를 0으로 설정 */
 
-.title {
-  float: left;
-  position: absolute;
-  left: 9rem;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    ul {
+      line-height: 1.8;
+      margin: 0;
+      padding-inline-start: 1.5em;  
+    }
+  
+  }
 }
