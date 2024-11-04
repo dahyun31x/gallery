@@ -19,9 +19,9 @@ export default function Page() {
   }, []);
 
   const tabData = [
-    { btn: "일상 🏃‍♀️", content: "example 2", name: "일상", desc: "일상 한 줄" },
-    { btn: "독후감 📚", content: "example 1", name: "독후감", desc: "책 읽기"},
-    { btn: "홈 🏡", content: mdxContent ? <MDXRemote {...mdxContent} /> : null, name:"홈", desc: "어서오세요." },
+    { btn: "일상 🏃‍♀️", content: "example 2", name: "일상", desc: "기록 한 조각" },
+    { btn: "독후감 📚", content: "example 1", name: "독후감", desc: "오늘의 단락"},
+    { btn: "홈 🏡", content: mdxContent ? <MDXRemote {...mdxContent} /> : null, name:"홈", desc: "환영해요 ദ്ദിᐢ- ̫-ᐢ₎" },
   ];
 
   const [activeTab, setActiveTab] = useState(2);
