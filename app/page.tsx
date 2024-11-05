@@ -7,24 +7,33 @@ import styles from "./page.module.scss";
 
 export default function Page() {
   const [mdxContent, setMdxContent] = useState<MDXRemoteSerializeResult | null>(null);
-
+  const [activeTab, setActiveTab] = useState(2);
+  
+  const fetchMdxContent = async (fileName: string) => {
+    try {
+      const response = await fetch(`/api?file=${fileName}`);
+      const data = await response.json();
+      const mdxSource = await serialize(data.content);
+      setMdxContent(mdxSource);
+    } catch (error) {
+      console.error('Error fetching MDX content:', error);
+    }
+  };
+  
   useEffect(() => {
-    fetch('/api')
-      .then(response => response.json())
-      .then(async data => {
-        const mdxSource = await serialize(data.content);
-        setMdxContent(mdxSource);
-      })
-      .catch(error => console.error('Error fetching dev log:', error));
+    fetchMdxContent('개발일지'); // 기본값으로 '개발일지.md' 파일을 불러옴
   }, []);
-
+  
   const tabData = [
     { btn: "일상 🏃‍♀️", content: "example 2", name: "일상", desc: "기록 한 조각" },
-    { btn: "독후감 📚", content: "example 1", name: "독후감", desc: "오늘의 단락"},
+    { btn: "독후감 📚", content: mdxContent ? <MDXRemote {...mdxContent} /> : null, name:"독후감", desc: "오늘의 단락" },
     { btn: "홈 🏡", content: mdxContent ? <MDXRemote {...mdxContent} /> : null, name:"홈", desc: "환영해요 ദ്ദിᐢ- ̫-ᐢ₎" },
   ];
-
-  const [activeTab, setActiveTab] = useState(2);
+  
+  const handleTabClick = (index: number, fileName: string) => {
+    setActiveTab(index);
+    fetchMdxContent(fileName);
+  };
 
   return (
     <div className={styles.root}>
@@ -34,7 +43,7 @@ export default function Page() {
             <li
               key={index}
               className={index === activeTab ? styles.activeTab : ""}
-              onClick={() => setActiveTab(index)}
+              onClick={() => handleTabClick(index, tab.name === "독후감" ? "독후감" : "개발일지")}
             >
               {tab.btn}
             </li>
