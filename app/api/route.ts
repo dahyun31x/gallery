@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export const dynamic = 'force-static'; // 또는 'force-static'을 사용할 수 있습니다.
+export const dynamic = 'force-dynamic'; // 또는 'force-static'을 사용할 수 있습니다.
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
