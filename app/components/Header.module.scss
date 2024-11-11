@@ -1,0 +1,29 @@
+.root {
+  display: flex;
+  list-style-type: none;
+  justify-content: flex-end;
+}
+
+.tabList {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: 1px black solid;
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    width: fit-content;
+    border-bottom-style: none;
+    padding: 8px 16px 6px 16px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: gray;
+    color: white;
+    margin-right: 4px;
+  }
+
+  .activeTab {
+    color: white;
+    background: black;
+  }
+}

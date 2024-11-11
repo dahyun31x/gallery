@@ -11,41 +11,17 @@
   width: 100%;
   height: 100%;
   padding-top: 20px;
-  
-  .tabList {
-    width: 100%;
-    display: flex;
-    flex-direction: row-reverse;
-    border-bottom: 1px black solid;
-    list-style-type: none;
-    
-    li {
-      width: fit-content;
-      border-bottom-style: none;
-      padding: 8px 16px 6px 16px;
-      border-radius: 10px 10px 0px 0px;
-      background-color: gray;
-      color: white;
-      margin-right: 4px;
-    }
-
-    .activeTab {
-      color: white;
-      background: black;
-    }
-  }
 }
 
 .tabContent {
   display: flex;
-  padding-top: 1rem;
   section {
-    flex-grow: 1; /* 4 비율 */
-    flex-basis: 0; /* 기본 크기를 0으로 설정 */  
+    flex-grow: 1.5; /* 비율 */
+    flex-basis: 0; /* 기본 크기를 0으로 설정 */
   }
-  
+
   .homeContent {
-    flex-grow: 4.5; /* 4 비율 */
+    flex-grow: 4.5; /* 비율 */
     flex-basis: 0; /* 기본 크기를 0으로 설정 */
 
     width: auto;
@@ -54,8 +30,7 @@
     ul {
       line-height: 1.8;
       margin: 0;
-      padding-inline-start: 1.5em;  
+      padding-inline-start: 1.5em;
     }
-  
   }
 }

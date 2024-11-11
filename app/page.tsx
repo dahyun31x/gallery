@@ -55,22 +55,6 @@ export default function Page() {
   return (
     <div className={styles.root}>
       <div className={styles.tabListContentWrapper}>
-        <ul className={styles.tabList}>
-          {tabData.map((tab, index) => (
-            <li
-              key={index}
-              className={index === activeTab ? styles.activeTab : ''}
-              onClick={() =>
-                handleTabClick(
-                  index,
-                  tab.name === '독후감' ? '독후감' : '개발일지',
-                )
-              }
-            >
-              {tab.btn}
-            </li>
-          ))}
-        </ul>
         <div className={styles.tabContent}>
           <section>
             <h1>{tabData[activeTab].name}</h1>
@@ -83,3 +67,6 @@ export default function Page() {
     </div>
   );
 }
+
+// TODO: Header 컴포넌트에 page.tsx에서 사용하고 있는 탭 컴포넌트를 옮기기
+// TODO: book 컴포넌트 디렉토리에 있는 파일 불러오게하는 코드 작성하기 + API 라우트 추가
