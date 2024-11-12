@@ -9,11 +9,10 @@ export default function Page() {
   const [mdxContent, setMdxContent] = useState<MDXRemoteSerializeResult | null>(
     null,
   );
-  const [activeTab, setActiveTab] = useState(2);
 
   const fetchMdxContent = async (fileName: string) => {
     try {
-      const response = await fetch(`/api?file=${fileName}`);
+      const response = await fetch(`/api?fileName=${fileName}`);
       const data = await response.json();
       const mdxSource = await serialize(data.content);
       setMdxContent(mdxSource);
@@ -47,26 +46,18 @@ export default function Page() {
     },
   ];
 
-  const handleTabClick = (index: number, fileName: string) => {
-    setActiveTab(index);
-    fetchMdxContent(fileName);
-  };
-
   return (
     <div className={styles.root}>
       <div className={styles.tabListContentWrapper}>
         <div className={styles.tabContent}>
           <section>
-            <h1>{tabData[activeTab].name}</h1>
+            <h1>{tabData[2].name}</h1>
             <br />
-            <p>{tabData[activeTab].desc}</p>
+            <p>{tabData[2].desc}</p>
           </section>
-          <div className={styles.homeContent}>{tabData[activeTab].content}</div>
+          <div className={styles.homeContent}>{tabData[2].content}</div>
         </div>
       </div>
     </div>
   );
 }
-
-// TODO: Header 컴포넌트에 page.tsx에서 사용하고 있는 탭 컴포넌트를 옮기기
-// TODO: book 컴포넌트 디렉토리에 있는 파일 불러오게하는 코드 작성하기 + API 라우트 추가
