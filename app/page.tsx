@@ -10,9 +10,9 @@ export default function Page() {
     null,
   );
 
-  const fetchMdxContent = async (fileName: string) => {
+  const fetchMdxContent = async () => {
     try {
-      const response = await fetch(`/api?fileName=${fileName}`);
+      const response = await fetch(`/api?fileName=개발일지`);
       const data = await response.json();
       const mdxSource = await serialize(data.content);
       setMdxContent(mdxSource);
@@ -22,7 +22,7 @@ export default function Page() {
   };
 
   useEffect(() => {
-    fetchMdxContent('개발일지'); // 기본값으로 '개발일지.md' 파일을 불러옴
+    fetchMdxContent();
   }, []);
 
   const tabData = [
