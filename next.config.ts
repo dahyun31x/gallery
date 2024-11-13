@@ -1,7 +1,16 @@
-import type { NextConfig } from 'next';
+import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
 
-const nextConfig: NextConfig = {
-  // output: 'export',
+async function setup() {
+  if (process.env.NODE_ENV === 'development') {
+    await setupDevPlatform();
+  }
+}
+
+setup();
+
+const nextConfig = {
+  reactStrictMode: true,
+  // 기타 설정
 };
 
 export default nextConfig;
