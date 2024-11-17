@@ -9,6 +9,15 @@
     "typescriptreact"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+    "source.fixAll.eslint": "explicit"
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "gallery",
+      "database": "gallery.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }
