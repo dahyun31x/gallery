@@ -21,7 +21,28 @@ const createTableQuery = `
   name VARCHAR,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)`;
+);
+
+CREATE TABLE IF NOT EXISTS dev_logs (
+  id INTEGER PRIMARY KEY,
+  title VARCHAR,
+  body TEXT,
+  user_id INTEGER,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS book_reports (
+  id INTEGER PRIMARY KEY,
+  title VARCHAR,
+  body TEXT,
+  user_id INTEGER,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+`;
 
 db.serialize(() => {
   db.run(createTableQuery, (err) => {
