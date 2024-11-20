@@ -6,17 +6,21 @@ export default {
 	async fetch(request, env): Promise<Response> {
 		const { pathname } = new URL(request.url);
 
-		if (pathname === '/api/beverages') {
-			// If you did not use `DB` as your binding name, change it here
-			const { results } = await env.DB.prepare('SELECT * FROM Customers WHERE CompanyName = ?').bind('Bs Beverages').all();
+		if (pathname === '/api/users') {
+			const { results } = await env.DB.prepare('SELECT * FROM users').run();
 			return Response.json(results);
 		}
 
-		if (pathname === '/users') {
-			const { results } = await env.DB.prepare('CREATE TABLE Users (id INTEGER PRIMARY KEY, name TEXT)').run();
+		if (pathname === '/api/devlogs') {
+			const { results } = await env.DB.prepare('SELECT * FROM dev_logs').run();
 			return Response.json(results);
 		}
 
-		return new Response('Call /api/beverages to see everyone who works at Bs Beverages');
+		if (pathname === '/api/bookreports') {
+			const { results } = await env.DB.prepare('SELECT * FROM book_reports').run();
+			return Response.json(results);
+		}
+
+		return new Response('Hello, world!👋');
 	},
 } satisfies ExportedHandler<Env>;
