@@ -1,39 +1,45 @@
-'use client';
-
+// import { useEffect, useState } from 'react';
 import styles from './page.module.scss';
 
-export default function Page() {
-  const tabData = [
+const fetchData = async () => {
+  if (!process.env.DB_HOST || !process.env.DB_DEVLOG_PATH) {
+    throw new Error(
+      'Environment variables DB_HOST or DB_DEVLOG_PATH must be defined',
+    );
+  }
+  const dynamicData = await fetch(
+    `${process.env.DB_HOST}${process.env.DB_DEVLOG_PATH}`,
     {
-      btn: '일상 🏃‍♀️',
-      content: 'example 2',
-      name: '일상',
-      desc: '기록 한 조각',
+      cache: 'force-cache',
     },
-    {
-      btn: '독후감 📚',
-      content: 'example 독후감',
-      name: '독후감',
-      desc: '오늘의 단락',
-    },
-    {
-      btn: '홈 🏡',
-      content: 'example 홈',
-      name: '홈',
-      desc: '환영해요 ദ്ദിᐢ- ̫-ᐢ₎',
-    },
-  ];
+  );
+  const devLogs = await dynamicData.json();
+
+  return devLogs;
+};
+
+export default async function Page() {
+  const devLogs = await fetchData();
+
+  const child = devLogs.map(
+    (log: { title: string; body: string }, idx: number) => (
+      <section key={idx} className={styles.homeContent}>
+        <h2>{log.title}</h2>
+        <p>{log.body}</p>
+      </section>
+    ),
+  );
 
   return (
     <div className={styles.root}>
       <div className={styles.tabListContentWrapper}>
-        <div className={styles.tabContent}>
+        <div>
           <section>
-            <h1>{tabData[2].name}</h1>
+            <h1>{'홈'}</h1>
             <br />
-            <p>{tabData[2].desc}</p>
+            <p>{'환영해요 ദ്ദിᐢ- ̫-ᐢ₎'}</p>
           </section>
-          <div className={styles.homeContent}>{tabData[2].content}</div>
+          {child}
         </div>
       </div>
     </div>
