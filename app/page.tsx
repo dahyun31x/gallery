@@ -1,4 +1,4 @@
-// import { useEffect, useState } from 'react';
+import { headers } from 'next/headers';
 import styles from './page.module.scss';
 
 const fetchData = async () => {
@@ -10,7 +10,7 @@ const fetchData = async () => {
   const dynamicData = await fetch(
     `${process.env.DB_HOST}${process.env.DB_DEVLOG_PATH}`,
     {
-      cache: 'force-cache',
+      cache: 'no-cache',
     },
   );
   const devLogs = await dynamicData.json();
@@ -20,28 +20,24 @@ const fetchData = async () => {
 
 export default async function Page() {
   const devLogs = await fetchData();
-
-  const child = devLogs.map(
-    (log: { title: string; body: string }, idx: number) => (
-      <section key={idx} className={styles.homeContent}>
-        <h2>{log.title}</h2>
-        <p>{log.body}</p>
-      </section>
-    ),
-  );
+  const headersData = await headers();
+  const pathname = headersData.get('x-next-pathname') as string;
 
   return (
-    <div className={styles.root}>
-      <div className={styles.tabListContentWrapper}>
-        <div>
-          <section>
-            <h1>{'홈'}</h1>
-            <br />
-            <p>{'환영해요 ദ്ദിᐢ- ̫-ᐢ₎'}</p>
-          </section>
-          {child}
-        </div>
-      </div>
-    </div>
+    <>
+      <section className={styles.left}>
+        <h1>{pathname === '/' ? '홈' : '개발일지'}</h1>
+        <br />
+        <p>{pathname === '/' ? '환영합니다' : '천천히, 조금씩, 꾸준히 🛠️'}</p>
+      </section>
+      <section className={styles.right}>
+        {devLogs.map((log: { title: string; body: string }, idx: number) => (
+          <div key={idx} className={styles.homeContent}>
+            <h2>{log.title}</h2>
+            <p>{log.body}</p>
+          </div>
+        ))}
+      </section>
+    </>
   );
 }

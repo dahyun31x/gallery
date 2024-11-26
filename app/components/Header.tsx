@@ -10,11 +10,6 @@ const Header = () => {
 
   const tabData = [
     {
-      btn: '일상 🏃‍♀️',
-      name: '일상',
-      path: '/daily',
-    },
-    {
       btn: '독후감 📚',
       name: '독후감',
       path: '/book',
@@ -34,17 +29,15 @@ const Header = () => {
   }, [pathname]);
 
   return (
-    <>
-      <ul className={styles.tabList}>
-        {tabData.map((tab, index) => (
-          <Link key={index} href={`${tab.path}`}>
-            <li className={tab.name === activeTabName ? styles.activeTab : ''}>
-              {tab.btn}
-            </li>
-          </Link>
-        ))}
-      </ul>
-    </>
+    <ul className={styles.tabList}>
+      {tabData.map((tab, index) => (
+        <Link key={index} href={`${tab.path}`}>
+          <li className={tab.name === activeTabName ? styles.activeTab : ''}>
+            {tab.btn}
+          </li>
+        </Link>
+      ))}
+    </ul>
   );
 };
 

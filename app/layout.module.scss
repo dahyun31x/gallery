@@ -1,7 +1,39 @@
 body {
   -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 5rem 2rem 4rem;
+  width: 100%;
+  flex-basis: 0;
+}
+
+.left {
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.right {
+  overflow-y: scroll;
+  flex-basis: 0;
+  flex-grow: 3;
+}
+
+@media (max-width: 768px) {
+  .root {
+    flex-direction: column;
+
+    section:first-child {
+      margin-bottom: 2rem;
+    }
+  }
 }

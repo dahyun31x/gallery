@@ -1,36 +1,21 @@
-.root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.left {
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
-.tabListContentWrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  padding-top: 20px;
+.right {
+  flex-basis: 0;
+  flex-grow: 3.5;
 }
 
-.tabContent {
-  display: flex;
-  section {
-    flex-grow: 1.5; /* 비율 */
-    flex-basis: 0; /* 기본 크기를 0으로 설정 */
-  }
+.homeContent {
+  flex-grow: 4.5; /* 비율 */
+  flex-basis: 0; /* 기본 크기를 0으로 설정 */
+  width: auto;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
 
-  .homeContent {
-    flex-grow: 4.5; /* 비율 */
-    flex-basis: 0; /* 기본 크기를 0으로 설정 */
-
-    width: auto;
-    height: 100%;
-    overflow: hidden;
-    ul {
-      line-height: 1.8;
-      margin: 0;
-      padding-inline-start: 1.5em;
-    }
-  }
+.homeContent:last-child {
+  margin-bottom: 0;
 }
