@@ -12,7 +12,7 @@ export default {
 		}
 
 		if (pathname === '/api/devlogs') {
-			const { results } = await env.DB.prepare('SELECT * FROM dev_logs').run();
+			const { results } = await env.DB.prepare('SELECT * FROM dev_logs ORDER BY id DESC').run();
 			return Response.json(results);
 		}
 
