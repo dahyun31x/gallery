@@ -22,6 +22,9 @@ body {
 }
 
 body {
+  -ms-overflow-style: none;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
   max-width: 1000px;
@@ -31,6 +34,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 * {

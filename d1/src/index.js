@@ -1,9 +1,5 @@
-export interface Env {
-	DB: any;
-}
-
 export default {
-	async fetch(request, env): Promise<Response> {
+	async fetch(request, env) {
 		const { pathname } = new URL(request.url);
 
 		if (pathname === '/api/users') {
@@ -23,4 +19,4 @@ export default {
 
 		return new Response('Hello, world!👋');
 	},
-} satisfies ExportedHandler<Env>;
+};

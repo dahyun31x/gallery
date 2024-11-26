@@ -2,11 +2,6 @@ import { headers } from 'next/headers';
 import styles from './page.module.scss';
 
 const fetchData = async () => {
-  if (!process.env.DB_HOST || !process.env.DB_DEVLOG_PATH) {
-    throw new Error(
-      'Environment variables DB_HOST or DB_DEVLOG_PATH must be defined',
-    );
-  }
   const dynamicData = await fetch(
     `${process.env.DB_HOST}${process.env.DB_DEVLOG_PATH}`,
     {
@@ -21,7 +16,7 @@ const fetchData = async () => {
 export default async function Page() {
   const devLogs = await fetchData();
   const headersData = await headers();
-  const pathname = headersData.get('x-next-pathname') as string;
+  const pathname = headersData.get('x-next-pathname') as string | null;
 
   return (
     <>
