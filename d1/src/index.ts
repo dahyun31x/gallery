@@ -1,5 +1,5 @@
 export default {
-	async fetch(request, env) {
+	async fetch(request: Request, env: any) {
 		const { pathname } = new URL(request.url);
 
 		if (pathname === '/api/users') {
